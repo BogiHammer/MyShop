@@ -6,20 +6,18 @@ using MyShop.Core.Models;
 
 namespace MyShop.DataAccess.InMemory
 {
-    class ProductRepository
+   public class ProductRepository
     {
         ObjectCache cache = MemoryCache.Default;
-
         List<Product> products;
 
         public ProductRepository()
         {
-            products = cache["Products"] as List<Product>;
-            if(products == null)
+            products = cache["products"] as List<Product>;
+            if (products == null)
             {
                 products = new List<Product>();
             }
-            
         }
 
         public void Commit()
@@ -36,12 +34,13 @@ namespace MyShop.DataAccess.InMemory
         {
             Product productToUpdate = products.Find(p => p.Id == product.Id);
 
-            if(productToUpdate != null)
+            if (productToUpdate != null)
             {
                 productToUpdate = product;
-            }else
+            }
+            else
             {
-                throw new Exception("Product not found");
+                throw new Exception("Product no found");
             }
         }
 
@@ -55,9 +54,8 @@ namespace MyShop.DataAccess.InMemory
             }
             else
             {
-                throw new Exception("Product not found");
+                throw new Exception("Product no found");
             }
-
         }
 
         public IQueryable<Product> Collection()
@@ -71,11 +69,11 @@ namespace MyShop.DataAccess.InMemory
 
             if (productToDelete != null)
             {
-                 products.Remove(productToDelete);
+                products.Remove(productToDelete);
             }
             else
             {
-                throw new Exception("Product not found");
+                throw new Exception("Product no found");
             }
         }
     }
