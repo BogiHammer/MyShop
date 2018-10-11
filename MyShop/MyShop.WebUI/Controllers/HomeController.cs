@@ -20,14 +20,14 @@ namespace MyShop.WebUI.Controllers
             productCategories = productCategoryContext;
         }
 
-        public ActionResult Index(string Category=null)
+        public ActionResult Index(string Category = null)
         {
             List<Product> products;
             List<ProductCategory> categories = productCategories.Collection().ToList();
 
-            if(Category == null)
+            if (Category == null)
             {
-              products =  context.Collection().ToList();
+                products = context.Collection().ToList();
             }
             else
             {
@@ -47,7 +47,7 @@ namespace MyShop.WebUI.Controllers
         {
             Product product = context.Find(Id);
 
-            if(product == null)
+            if (product == null)
             {
                 return HttpNotFound();
             }
